@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
 В основной программе объявите и инициализируйте одномерный строковый массив 
@@ -39,6 +37,18 @@ namespace Task02
             this.start = start;
         }
 
+        public IEnumerator<string> GetEnumerator()
+        {
+            for (int i = start - 1; i < start + values.Length - 1; i++)
+            {
+                yield return values[i % values.Length];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
     class Program
@@ -47,18 +57,28 @@ namespace Task02
         {
             try
             {
-                int startingIndex = 
-                string[] values = 
+                if (!int.TryParse(Console.ReadLine(), out int startingIndex) || startingIndex < 1)
+                {
+                    throw new ArgumentException();
+                }
+
+                var values = Console.ReadLine().Split(' ');
+                if (values.Length < startingIndex)
+                {
+                    throw new ArgumentException();
+                }
 
                 foreach (string ob in new IteratorSample(values, startingIndex))
+                {
                     Console.Write(ob + " ");
+                }
                 Console.WriteLine();
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 Console.WriteLine("error");
             }
-            catch (Exception e)
+            catch
             {
                 Console.WriteLine("problem");
             }

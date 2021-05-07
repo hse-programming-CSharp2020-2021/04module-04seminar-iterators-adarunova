@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 /*
  * Необходимо построить ряд чисел Фибоначчи, ограниченный числом, введенным с клавиатуры.
  * 
@@ -24,11 +21,16 @@ namespace Task01
         {
             try
             {
-                int value = 
+                if (!int.TryParse(Console.ReadLine(), out int value) || value < 1)
+                {
+                    throw new ArgumentException();
+                }
+
                 foreach (int el in Fibonacci(value))
                 {
                     Console.Write(el + " ");
                 }
+                Console.ReadLine();
             }
             catch (ArgumentException)
             {
@@ -38,7 +40,16 @@ namespace Task01
 
         public static IEnumerable<int> Fibonacci(int maxValue)
         {
-           
+            var f1 = 1;
+            var f2 = 1;
+
+            while (f1 <= maxValue)
+            {
+                yield return f1;
+
+                f2 += f1;
+                f1 = f2 - f1;
+            }
         }
     }
 }
