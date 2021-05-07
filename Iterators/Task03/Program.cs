@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
+using System.Text;
 
 /* На вход подается число N.
  * На каждой из следующих N строках записаны ФИО человека, 
@@ -38,6 +38,9 @@ namespace Task03
         {
             try
             {
+                Console.OutputEncoding = Encoding.UTF8;
+                Console.InputEncoding = Encoding.UTF8;
+
                 var N = 0;
                 if (!int.TryParse(Console.ReadLine(), out N) || N < 0)
                 {
@@ -71,7 +74,6 @@ namespace Task03
             {
                 Console.Write("error");
             }
-            Console.ReadLine();
         }
     }
 
@@ -95,7 +97,7 @@ namespace Task03
 
         public override string ToString()
         {
-            return $"{lastName} {firstName[0]}.";
+            return $"{lastName[0].ToString().ToUpper()}{lastName.Substring(1)} {firstName[0].ToString().ToUpper()}.";
         }
     }
 
