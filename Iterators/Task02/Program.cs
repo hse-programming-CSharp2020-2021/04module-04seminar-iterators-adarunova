@@ -41,7 +41,11 @@ namespace Task02
         {
             for (int i = start - 1; i < start + values.Length - 1; i++)
             {
-                yield return values[i % values.Length];
+                var value = values[i % values.Length].Trim(' ');
+                if (value != String.Empty) 
+                {
+                    yield return value;
+                }
             }
         }
 

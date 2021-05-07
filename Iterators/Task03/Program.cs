@@ -56,12 +56,12 @@ namespace Task03
 
                 var peopleList = new People(people);
 
-                foreach (Person p in peopleList)
+                foreach (var p in peopleList)
                 {
                     Console.WriteLine(p);
                 }
 
-                foreach (Person p in peopleList.GetPeople)
+                foreach (var p in peopleList.GetPeople)
                 {
                     Console.WriteLine(p);
                 }
@@ -92,9 +92,10 @@ namespace Task03
                 lastName.CompareTo(other.lastName);
         }
 
+
         public override string ToString()
         {
-            return $"{lastName} {firstName[0]}.";
+            return $"{char.ToUpper(firstName[0])}{firstName.Substring(1)} {char.ToUpper(lastName[0])}.";
         }
     }
 
