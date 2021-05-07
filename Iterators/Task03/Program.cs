@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 
 /* На вход подается число N.
  * На каждой из следующих N строках записаны ФИО человека, 
@@ -92,10 +93,9 @@ namespace Task03
                 lastName.CompareTo(other.lastName);
         }
 
-
         public override string ToString()
         {
-            return $"{char.ToUpper(firstName[0])}{firstName.Substring(1)} {char.ToUpper(lastName[0])}.";
+            return $"{lastName} {firstName[0]}.";
         }
     }
 
@@ -138,8 +138,9 @@ namespace Task03
         {
             _people = new Person[people.Length];
 
-            Array.Copy(_people, people, people.Length);
+            Array.Copy(people, _people, people.Length);
             Array.Sort(_people);
+
         }
 
 
